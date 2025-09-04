@@ -1,2 +1,2 @@
 # Automatic-Garage-Door-System
-An embedded systems project that automates garage door opening and closing using an Arduino Nano, custom-built circuits, and motor control. using an IR receiver.
+An embedded systems project that automates garage door opening and closing using an Arduino Nano, custom-built circuits, and motor control. using an IR receiver. The system integrates servo motor and IR receiver for detection and uses real-time microcontroller programming to manage safe and reliable operation. Includes soldered hardware components, circuit schematics, and source code for replication and further development.
