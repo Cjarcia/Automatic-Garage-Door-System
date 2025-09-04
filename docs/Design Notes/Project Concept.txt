@@ -1,0 +1,16 @@
+Project Concept – Automatic Garage Door Control System
+This project uses an Arduino Nano to automate garage door operation through an infrared (IR) receiver and a standard remote control. When a specific button on the remote is pressed, the Arduino processes the IR signal and actuates a servo motor mounted on the side of the garage door’s control panel.
+
+The servo motor has a custom mechanical arm attached, designed to press the existing "Open" button on the control panel at a precise angle. By translating IR commands into controlled servo movements, the system enables wireless garage door activation without directly modifying the original control electronics.
+
+Key Features:
+
+Arduino Nano–based embedded system for real-time IR signal processing.
+
+Infrared receiver and remote control for wireless activation.
+
+Servo motor with custom arm to physically engage the control panel button.
+
+Non-invasive design — leverages existing garage door controls without rewiring the system.
+
+Scalable framework for adding features like Bluetooth/Wi-Fi connectivity or safety sensors.
