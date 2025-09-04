@@ -1,0 +1,54 @@
+#include <IRremote.hpp>
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+const int 
+IR_RECEIVE_PIN = 7;
+
+int pos = 0;    // variable to store the servo position
+bool done = false;
+
+bool armed = false;
+uint32_t armAt = 0;
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  Serial.begin(9600);
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
+
+   // Give the servo & IR receiver time to settle after auto-reset
+  armAt = millis() + 800;          // ~0.8s grace period
+  armed = false;
+  IrReceiver.resume();
+
+}
+
+void loop() {
+
+  if(IrReceiver.decode()){
+
+    if(IrReceiver.decodedIRData.protocol != UNKNOWN){//checks if the reciver gets "unknown signals" usually noise
+
+
+    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
+    done = false;
+    IrReceiver.printIRResultShort(&Serial);
+     IrReceiver.resume();
+if(IrReceiver.decodedIRData.decodedRawData == 0xE31CFF00){
+  if(!done){
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15 ms for the servo to reach the position
+  }
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15 ms for the servo to reach the position
+  }
+  done = true;
+  }
+  }
+    }
+    IrReceiver.resume ();
+  }
+} 
